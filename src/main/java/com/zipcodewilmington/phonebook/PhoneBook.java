@@ -1,11 +1,8 @@
 package com.zipcodewilmington.phonebook;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 //import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
 
 /**
  * Created by leon on 1/23/18.
@@ -13,42 +10,50 @@ import java.util.Map;
  */
 public class PhoneBook {
 
-    private final Map<String, List<String>> phonebook;
+    private Map<String, List<String>> phonebook;
 
     public PhoneBook(Map<String, List<String>> map) {
-        this.phonebook = null;
+        phonebook = map;
     }
 
     public PhoneBook() {
-        this(null);
+        this.phonebook = new HashMap<>();
     }
 
     public void add(String name, String phoneNumber) {
+        ArrayList<String> newPhoneBook = new ArrayList<>(Arrays.asList(phoneNumber));
+        phonebook.put(name, newPhoneBook);
     }
 
     public void addAll(String name, String... phoneNumbers) {
+        ArrayList<String> newPhoneBook = new ArrayList<>(Arrays.asList(phoneNumbers));
+        phonebook.put(name, newPhoneBook);
     }
 
     public void remove(String name) {
+        if(phonebook.containsValue(name)) {
+            phonebook.remove(name);
+        }
     }
 
     public Boolean hasEntry(String name) {
-        return null;
-    }
+        boolean flag = phonebook.containsValue(name);
+        return flag;
+        }
 
     public List<String> lookup(String name) {
-        return null;
+        return phonebook.get(name);
     }
 
-    public String reverseLookup(String phoneNumber)  {
+    public String reverseLookup(String phoneNumber) {
+
         return null;
+        }
+
+        public Map<String, List<String>> getMap () {
+
+            return phonebook;
+        }
     }
 
-    public List<String> getAllContactNames() {
-        return null;
-    }
 
-    public Map<String, List<String>> getMap() {
-        return null;
-    }
-}
